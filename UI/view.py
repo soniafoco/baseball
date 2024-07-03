@@ -1,6 +1,5 @@
 import flet as ft
 
-
 class View(ft.UserControl):
     def __init__(self, page: ft.Page):
         super().__init__()
@@ -24,7 +23,8 @@ class View(ft.UserControl):
         self._title = ft.Text("TdP Baseball Manager 2024", color="blue", size=24)
         # self._page.controls.append(self._title)
 
-        self._ddAnno = ft.Dropdown(label="Anno", width=200, alignment=ft.alignment.top_left)
+        self._ddAnno = ft.Dropdown(label="Anno", width=200, alignment=ft.alignment.top_left, on_change=self.controller.handleDDYear)
+        self._controller.fillDDYears()
 
         row1 = ft.Row([ft.Container(self._title, width=500),
                        ft.Container(None, width=0),
@@ -37,7 +37,7 @@ class View(ft.UserControl):
         self._ddSquadra = ft.Dropdown(label="Squadra")
         self._btnDettagli = ft.ElevatedButton(text="Dettagli", on_click=self._controller.handleDettagli)
         self._btnPercorso = ft.ElevatedButton(text="Percorso", on_click=self._controller.handlePercorso)
-        row3 = ft.Row([ft.Container(self._ddSquadra, width=250),
+        row3 = ft.Row([ft.Container(self._ddSquadra, width=350),
                        ft.Container(self._btnDettagli, width=250),
                        ft.Container(self._btnPercorso, width=250)], alignment=ft.MainAxisAlignment.CENTER)
 
